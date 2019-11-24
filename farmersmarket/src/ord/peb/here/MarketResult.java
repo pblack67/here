@@ -1,9 +1,11 @@
 package ord.peb.here;
 
-public class MarketResult implements Comparable {
-	public String marketId = "";
-	public int distance = 0;
-	public float percent = (float)0.0;
+import java.text.DecimalFormat;
+
+public class MarketResult implements Comparable<MarketResult> {
+	private String marketId = "";
+	private int distance = 0;
+	private float percent = (float)0.0;
 	
 	MarketResult(String marketId, int distance, Float percent) {
 		this.marketId = marketId;
@@ -19,7 +21,8 @@ public class MarketResult implements Comparable {
 		buf.append(distance);
 		if (percent > 0.0) {
 			buf.append(", ");
-			buf.append(percent);
+			DecimalFormat df = new DecimalFormat("#.##");
+			buf.append(df.format(percent*100));
 		}
 		buf.append("]");
 		return buf.toString();
@@ -30,8 +33,7 @@ public class MarketResult implements Comparable {
 		return marketId.hashCode();
 	}
 	
-	public int compareTo(Object obj) {
-		MarketResult result = (MarketResult)obj;
-		return (int)(result.percent - this.percent);
+	public int compareTo(MarketResult mr) {
+		return (int)((mr.percent - this.percent)*100);
 	}
 }
