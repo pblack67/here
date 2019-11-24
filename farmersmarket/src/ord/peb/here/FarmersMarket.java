@@ -18,7 +18,6 @@ public class FarmersMarket {
 			String line = br.readLine();
 			while (line != null) {
 				Market market = new Market(line);
-//				System.out.println(market);
 				markets.add(market);
 				line = br.readLine();
 			}
@@ -31,14 +30,18 @@ public class FarmersMarket {
 		return markets;
 	}
 	
-	public static List<Market> findMarkets(List<Market> markets, MarketInput input) {
-		return new ArrayList<Market>();
+	public static List<MarketResult> findMarkets(List<Market> markets, MarketInput input) {
+		List<Market> filtered = new ArrayList<Market>();
+//		for (Market market : markets) {
+//			
+//		}
+		
+		MarketResult result1 = new MarketResult(1019530, 0);
+		MarketResult result2 = new MarketResult(1019531, 3320);
+		List<MarketResult> results = new ArrayList<MarketResult>();
+		results.add(result1);
+		results.add(result2);
+		return results;
 	}
 	
-	public static void main(String[] args) {
-		List<Market> markets = readMarkets("C:\\Users\\pblac\\Documents\\GitHub\\here\\Farmers Market\\Data\\Farmers_Market.csv");
-//		MarketInput input = new MarketInput(args);
-//		List<Market> findMarkets(markets, "")
-	}
-
 }

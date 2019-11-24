@@ -23,6 +23,5 @@ public class MarketInput {
 		for (String attr : attrs) {
 			attributes.add(attr.trim().toUpperCase());
 		}
-		System.out.println(attributes);
 	}
 }

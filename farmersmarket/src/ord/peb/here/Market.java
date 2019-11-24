@@ -31,7 +31,6 @@ public class Market {
 		for (int index = ATTRIBUTE_START_INDEX; index < parts.length; index++) {
 			if (parts[index].compareTo("Y") == 0) {
 				attributes.add(index - ATTRIBUTE_START_INDEX);
-//				System.out.println(index - ATTRIBUTE_START_INDEX);
 			}
 		}
 	}
