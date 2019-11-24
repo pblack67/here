@@ -34,6 +34,13 @@ public class MarketResult implements Comparable<MarketResult> {
 	}
 	
 	public int compareTo(MarketResult mr) {
-		return (int)((mr.percent - this.percent)*100);
+		float diff = mr.percent - this.percent;
+		if (diff > 0) {
+			return 1;
+		} else if (diff < 0) {
+			return -1;
+		} else {
+			return 0;
+		}
 	}
 }
