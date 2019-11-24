@@ -1,10 +1,10 @@
 package ord.peb.here;
 
 public class MarketResult {
-	public int marketId = 0;
+	public String marketId = "";
 	public int distance = 0;
 	
-	MarketResult(int marketId, int distance) {
+	MarketResult(String marketId, int distance) {
 		this.marketId = marketId;
 		this.distance = distance;
 	}

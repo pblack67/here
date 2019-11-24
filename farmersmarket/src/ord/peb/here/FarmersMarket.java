@@ -15,10 +15,16 @@ public class FarmersMarket {
 		File file = new File(fileName);
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
+			// Eat the first header line
 			String line = br.readLine();
+			line = br.readLine();
 			while (line != null) {
-				Market market = new Market(line);
-				markets.add(market);
+				try {
+					Market market = new Market(line);
+					markets.add(market);
+				} catch (NumberFormatException e) {
+					System.out.println("Bad Coordinate(s)");
+				}
 				line = br.readLine();
 			}
 			br.close();
@@ -30,17 +36,41 @@ public class FarmersMarket {
 		return markets;
 	}
 	
+	private static boolean attributesMatch(Market market, List<String> attributes) {
+		for (String attr : attributes) {
+			int attrNum = ATTRIBUTES.valueOf(attr).getNumber();
+			if (!market.attributes.contains(attrNum)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static float distFrom(float lat1, float lng1, float lat2, float lng2) {
+		    double earthRadius = 6371000; //meters
+		    double dLat = Math.toRadians(lat2-lat1);
+		    double dLng = Math.toRadians(lng2-lng1);
+		    double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+		               Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
+		               Math.sin(dLng/2) * Math.sin(dLng/2);
+		    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		    float dist = (float) (earthRadius * c);
+
+		    return dist;
+	}
+	 
 	public static List<MarketResult> findMarkets(List<Market> markets, MarketInput input) {
-		List<Market> filtered = new ArrayList<Market>();
-//		for (Market market : markets) {
-//			
-//		}
-		
-		MarketResult result1 = new MarketResult(1019530, 0);
-		MarketResult result2 = new MarketResult(1019531, 3320);
 		List<MarketResult> results = new ArrayList<MarketResult>();
-		results.add(result1);
-		results.add(result2);
+		for (Market market : markets) {
+			if (attributesMatch(market, input.attributes)) {
+				Float distance = distFrom(input.target.get(0), input.target.get(1), market.getX(), market.getY());
+				if (distance < input.radius) {
+					System.out.println(market.getId() + " " + distance);
+					results.add(new MarketResult(market.getId(), (int)(float)distance));
+				}
+			}
+		}
+
 		return results;
 	}
 	

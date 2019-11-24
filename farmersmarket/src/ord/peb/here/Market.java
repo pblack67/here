@@ -12,8 +12,8 @@ public class Market {
 	private String county;
 	private String state;
 	private String zip;
-	private String x;
-	private String y;
+	private Float x;
+	private Float y;
 	Set<Integer> attributes = new HashSet<Integer>();
 	private static Integer ATTRIBUTE_START_INDEX = 8;
 	
@@ -92,20 +92,20 @@ public class Market {
 		this.zip = zip;
 	}
 
-	public String getX() {
+	public Float getX() {
 		return x;
 	}
 
 	public void setX(String x) {
-		this.x = x;
+		this.x = Float.valueOf(x);
 	}
 
-	public String getY() {
+	public Float getY() {
 		return y;
 	}
 
 	public void setY(String y) {
-		this.y = y;
+		this.y = Float.valueOf(y);
 	}
 	
 	
