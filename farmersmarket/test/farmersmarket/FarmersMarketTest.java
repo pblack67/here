@@ -18,7 +18,7 @@ class FarmersMarketTest {
 		List<Market> markets = FarmersMarket.readMarkets("C:\\Users\\pblac\\Documents\\GitHub\\here\\Farmers Market\\Data\\Farmers_Market.csv");
 		MarketInput input = new MarketInput("[-81.553272, 41.098698], 5000, [Credit, WIC, Bakedgoods, Cheese, Vegetables]");
 		List<MarketResult> results = FarmersMarket.findMarkets(markets, input);
-		assertEquals("[[1019530, 0], [1019531, 3320]]", results.toString());
+		assertEquals("[[1019530, 0], [1019531, 4161], [1019529, 3683]]", results.toString());
 	}
 
 }
