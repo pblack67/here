@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class FarmersMarket {
 
-	private static Market[] readMarkets(String fileName) { 
+	public static List<Market> readMarkets(String fileName) { 
 		List<Market> markets = new ArrayList<Market>();
 		File file = new File(fileName);
 		try {
@@ -18,6 +18,7 @@ public class FarmersMarket {
 			String line = br.readLine();
 			while (line != null) {
 				Market market = new Market(line);
+//				System.out.println(market);
 				markets.add(market);
 				line = br.readLine();
 			}
@@ -30,8 +31,14 @@ public class FarmersMarket {
 		return markets;
 	}
 	
+	public static List<Market> findMarkets(List<Market> markets, MarketInput input) {
+		return new ArrayList<Market>();
+	}
+	
 	public static void main(String[] args) {
-		Market[] markets = readMarkets("C:\\Users\\pblac\\Documents\\GitHub\\here\\Farmers Market\\Data\\Farmers_Market.csv");
+		List<Market> markets = readMarkets("C:\\Users\\pblac\\Documents\\GitHub\\here\\Farmers Market\\Data\\Farmers_Market.csv");
+//		MarketInput input = new MarketInput(args);
+//		List<Market> findMarkets(markets, "")
 	}
 
 }

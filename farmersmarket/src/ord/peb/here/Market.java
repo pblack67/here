@@ -14,16 +14,35 @@ public class Market {
 	private String zip;
 	private String x;
 	private String y;
-	Set<ATTRIBUTES> attributes = new HashSet<ATTRIBUTES>();
+	Set<Integer> attributes = new HashSet<Integer>();
+	private static Integer ATTRIBUTE_START_INDEX = 8;
 	
 	private void parseLine(String line) {
 		String[] parts = line.split(",");
+		setId(parts[0]);
+		setName(parts[1]);
+		setCity(parts[2]);
+		setCounty(parts[3]);
+		setState(parts[4]);
+		setZip(parts[5]);
+		setX(parts[6]);
+		setY(parts[7]);
 		
+		for (int index = ATTRIBUTE_START_INDEX; index < parts.length; index++) {
+			if (parts[index].compareTo("Y") == 0) {
+				attributes.add(index - ATTRIBUTE_START_INDEX);
+//				System.out.println(index - ATTRIBUTE_START_INDEX);
+			}
+		}
 	}
 	
 	public Market(String line) {
 		super();
 		parseLine(line);
+	}
+	
+	public String toString() {
+		return getId();
 	}
 
 	public String getId() {
